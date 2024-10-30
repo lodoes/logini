@@ -1,0 +1,146 @@
+/* Card container */
+/* ResidenceCard.module.css */
+
+
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
+/* Image container with overlay badge */
+.imageContainer {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 200px;
+}
+
+.residenceImage {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  object-position: center; /* Centers the image within the container */
+  border-radius: 12px;
+
+}
+/* Line separator */
+.separator {
+  width: 100%;
+  height: 1px; /* Adjust height for thinness */
+  background-color: #000000; /* Light gray color */
+  margin-top: 15px; /* Spacing above and below the line */
+  margin-bottom: 10px;
+  opacity: 10%;
+}
+
+
+/* Status badge for availability overlay */
+.statusBadge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 520;
+  padding: 5px 10px;
+  border-radius: 16px;
+  color: #2d3748; /* Dark text color */
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
+}
+
+/* Circular color indicator inside the status badge */
+.statusBadge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Status colors */
+.available::before {
+  background-color: #4caf50;
+}
+
+.soon::before {
+  background-color: #ff9800;
+}
+
+.unavailable::before {
+  background-color: #f44336;
+}
+
+.notProvided::before {
+  background-color: #9e9e9e;
+}
+
+/* Title of the residence */
+.cardTitle {
+  margin: 16px 0 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Location styling */
+.location {
+  font-size: 0.9rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+}
+
+.location i {
+  margin-right: 6px;
+  font-size: 1rem;
+  color: #718096;
+}
+
+.type {
+  font-size: 0.9rem;
+  color: #718096;
+  display: flex;
+  align-items: center;
+}
+
+/* Footer with price */
+.cardFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.startingText {
+  font-size: 0.9rem;
+  color: #888;
+  margin-right: 4px;
+}
+
+.cardHeader {}
+
+.cardPrice {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #50b1c9;
+}
