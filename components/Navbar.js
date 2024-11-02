@@ -1,31 +1,22 @@
 import React from 'react';
-import Link from 'next/link'; // Importez Link de next/link
+import Link from 'next/link'; // Import Link from next/link
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        {/* Utilisez Link pour la navigation */}
-        <Link href="/">
-          <a>MyApp</a>
-        </Link>
+        <Link href="/">MyApp</Link>
       </div>
       <ul className={styles.navLinks}>
         <li>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
+          <Link href="/about">About</Link>
         </li>
         <li>
-          <Link href="/contact">
-            <a>Contact</a>
-          </Link>
+          <Link href="/contact">Contact</Link>
         </li>
       </ul>
     </nav>

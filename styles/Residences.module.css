@@ -1,5 +1,4 @@
 /* General container styling */
-
 .container {
   width: 95%;
   margin: 0 auto;
@@ -82,12 +81,14 @@
   font-size: 1rem;
 }
 
+/* Pagination styling */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   margin-top: 20px;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .pageButton {
@@ -118,6 +119,27 @@
   background-color: #50b1c9;
   color: white;
   border: 1px solid #50b1c9;
+}
+
+/* Responsive Pagination for smaller screens */
+@media (max-width: 768px) {
+  .pageButton {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  .pagination {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageButton {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+  .pagination {
+    gap: 4px;
+  }
 }
 
 /* Modern Price Slider */
