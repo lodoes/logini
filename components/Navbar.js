@@ -1,24 +1,35 @@
+// components/Navbar.js
 import React from 'react';
-import Link from 'next/link'; // Import Link from next/link
+import Link from 'next/link';
 import styles from '../styles/Navbar.module.css';
 
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
+      {/* Left Side: Logo */}
       <div className={styles.logo}>
-        <Link href="/">MyApp</Link>
+        <Link href="/">
+          <img src="/images/logo.png" alt="Logo" className={styles.logoImage} />
+        </Link>
       </div>
+
+      {/* Center: Navigation Links */}
       <ul className={styles.navLinks}>
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/" className={styles.activeLink}>
+            Accueil
+          </Link>
         </li>
         <li>
-          <Link href="/about">About</Link>
+          <Link href="/residences">Toutes les résidences</Link>
         </li>
-        <li>
-          <Link href="/contact">Contact</Link>
-        </li>
+       
       </ul>
+
+      {/* Right Side: Icons */}
+      <div className={styles.icons}>
+        <p>👤</p>
+      </div>
     </nav>
   );
 };
