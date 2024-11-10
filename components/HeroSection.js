@@ -38,7 +38,7 @@ const HeroSection = () => {
             {residenceCount.toLocaleString()} Résidences étudiantes pour vous
           </h1>
           <p className="text-gray-700 mt-6 text-lg">
-            Découvrez une large gamme de résidences dans des emplacements privilégiés. Trouvez l'endroit parfait pour vous sentir chez vous.
+            Découvrez une large gamme de résidences dans des emplacements privilégiés. Trouvez l&apos;endroit parfait pour vous sentir chez vous.
           </p>
           <button className="mt-8 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
             Trouvez votre résidence

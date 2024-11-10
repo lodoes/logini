@@ -9,7 +9,6 @@ const Navbar = () => {
       {/* Left Side: Logo */}
       <div className={styles.logo}>
         <Link href="/">
-          <img src="/images/logo.png" alt="Logo" className={styles.logoImage} />
         </Link>
       </div>
 

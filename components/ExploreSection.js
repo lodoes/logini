@@ -100,7 +100,7 @@ const ExploreSection = () => {
           <option value="93">Seine-Saint-Denis (93)</option>
           <option value="94">Val-de-Marne (94)</option>
           <option value="77">Seine-et-Marne (77)</option>
-          <option value="95">Val-d'Oise (95)</option>
+          <option value="95">Val-d&apos;Oise (95)</option>
           <option value="78">Yvelines (78)</option>
           <option value="92">Hauts-de-Seine (92)</option>
           <option value="75">Paris (75)</option>
