@@ -262,3 +262,11 @@
 }
 
 
+/* Count display between filters and active filter tags */
+.residencesCount {
+  margin: 15px 0;
+  font-size: 1rem;
+  color: #4b5563;
+  font-weight: 500;
+  text-align: left;
+}

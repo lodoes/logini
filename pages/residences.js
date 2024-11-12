@@ -1,7 +1,7 @@
 // pages/Residences.js
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabaseClient';
 import Pagination from '../components/Pagination';
@@ -38,10 +38,8 @@ const Residences = () => {
       } else {
         setResidences(data);
 
-        // Initialiser le filtre avec les valeurs de l'URL si elles sont présentes
         let initialFiltered = data;
 
-        // Appliquer le filtre de disponibilité
         if (queryDisponibilite === 'disponible') {
           initialFiltered = initialFiltered.filter((residence) =>
             residence.disponibilite.toLowerCase() === 'disponible'
@@ -49,7 +47,6 @@ const Residences = () => {
           setDisponibilite(queryDisponibilite);
         }
 
-        // Appliquer le filtre de recherche si présent dans l'URL
         if (querySearchText) {
           initialFiltered = initialFiltered.filter((residence) =>
             residence.nom.toLowerCase().includes(querySearchText.toLowerCase()) ||
@@ -60,7 +57,6 @@ const Residences = () => {
           setSearchText(querySearchText);
         }
 
-        // Appliquer le filtre de département si présent dans l'URL
         if (queryDepartement) {
           initialFiltered = initialFiltered.filter((residence) =>
             residence.departement.toLowerCase().includes(queryDepartement.toLowerCase())
@@ -81,7 +77,7 @@ const Residences = () => {
     setMaxPrice(max);
   };
 
-  const handleFilter = () => {
+  const handleFilter = useCallback(() => {
     let filtered = residences;
 
     if (disponibilite) {
@@ -113,13 +109,12 @@ const Residences = () => {
 
     setFilteredResidences(filtered);
     setCurrentPage(1);
-  };
+  }, [residences, disponibilite, departement, minPrice, maxPrice, searchText]);
 
   useEffect(() => {
     handleFilter();
-  }, [searchText, departement, disponibilite, minPrice, maxPrice]);
+  }, [handleFilter]);
 
-  // Fonction pour supprimer un filtre individuel
   const removeFilter = (type) => {
     if (type === 'searchText') setSearchText('');
     else if (type === 'departement') setDepartement('');
@@ -130,17 +125,16 @@ const Residences = () => {
     }
   };
 
-  // Rendu des tags de filtres actifs
   const renderActiveFilters = () => (
-    <div className="flex flex-wrap gap-2 mb-4">
+    <div className={styles.activeFilters}>
       {searchText && (
-        <FilterTag type="search" label={`${searchText}`} onRemove={() => removeFilter('searchText')} />
+        <FilterTag type="search" label={searchText} onRemove={() => removeFilter('searchText')} />
       )}
       {departement && (
-        <FilterTag type="location" label={`${departement}`} onRemove={() => removeFilter('departement')} />
+        <FilterTag type="location" label={departement} onRemove={() => removeFilter('departement')} />
       )}
       {disponibilite && (
-        <FilterTag type="availability" label={`${disponibilite}`} onRemove={() => removeFilter('disponibilite')} />
+        <FilterTag type="availability" label={disponibilite} onRemove={() => removeFilter('disponibilite')} />
       )}
       {(minPrice > 0 || maxPrice < 1000) && (
         <FilterTag type="price" label={`${minPrice}€ - ${maxPrice}€`} onRemove={() => removeFilter('price')} />
@@ -148,7 +142,6 @@ const Residences = () => {
     </div>
   );
 
-  // Composant pour un tag de filtre individuel avec icon customization
   const FilterTag = ({ label, type, onRemove }) => {
     const getIcon = () => {
       switch (type) {
@@ -166,83 +159,84 @@ const Residences = () => {
     };
 
     return (
-      <div className={styles.filterTag}>
+      <div className={styles.filterTag} onClick={onRemove} role="button" style={{ cursor: 'pointer' }}>
         <FontAwesomeIcon icon={getIcon()} className="icon" />
         <span>{label}</span>
-        <button onClick={onRemove}>×</button>
+        <button onClick={(e) => { e.stopPropagation(); onRemove(); }}>×</button>
       </div>
     );
   };
 
-  // Rendu du composant
   return (
     <>
       <Navbar />
 
       <div className={styles.container}>
-      
-
-        {/* Options de filtres */}
-        <div className={styles.filtersRow}>
-          <input
-            type="text"
-            placeholder="Rechercher par nom, département, ville..."
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            className={styles.searchInput}
-          />
-
-          <div className={styles.filterGroup}>
-            <label htmlFor="departementSelect" className={styles.filterLabel}>Département:</label>
-            <select
-              id="departementSelect"
-              value={departement}
-              onChange={(e) => setDepartement(e.target.value)}
-              className={styles.select}
-            >
-              <option value="">Tous les départements</option>
-              {residences
-                .map((residence) => residence.departement)
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .map((dept, index) => (
-                  <option key={index} value={dept}>
-                    {dept}
-                  </option>
-                ))}
-            </select>
-          </div>
-
-          <div className={styles.filterGroup}>
-            <label htmlFor="disponibiliteSelect" className={styles.filterLabel}>Disponibilité:</label>
-            <select
-              id="disponibiliteSelect"
-              value={disponibilite}
-              onChange={(e) => setDisponibilite(e.target.value)}
-              className={styles.select}
-            >
-              <option value="">Tous</option>
-              <option value="Disponible">Disponible</option>
-              <option value="Bientôt disponible">Bientôt Disponible</option>
-              <option value="Non disponible">Indisponible</option>
-              <option value="Non renseigné">Non renseigné</option>
-            </select>
-          </div>
-
-          <div className={styles.sliderContainer}>
-            <label>Prix maximum: {minPrice}€ - {maxPrice}€</label>
-            <RangeSlider
-              min={0}
-              max={1000}
-              step={10}
-              defaultValue={[minPrice, maxPrice]}
-              onInput={handleRangeChange}
-              thumbsDisabled={[false, false]}
-              rangeSlideDisabled={false}
+        <div className={styles.filtersContainer}>
+          <div className={styles.filtersRow}>
+            <input
+              type="text"
+              placeholder="Rechercher par nom, département, ville..."
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+              className={styles.searchInput}
             />
+
+            <div className={styles.filterGroup}>
+              <label htmlFor="departementSelect" className={styles.filterLabel}>Département:</label>
+              <select
+                id="departementSelect"
+                value={departement}
+                onChange={(e) => setDepartement(e.target.value)}
+                className={styles.select}
+              >
+                <option value="">Tous les départements</option>
+                {residences
+                  .map((residence) => residence.departement)
+                  .filter((v, i, a) => a.indexOf(v) === i)
+                  .map((dept, index) => (
+                    <option key={index} value={dept}>
+                      {dept}
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className={styles.filterGroup}>
+              <label htmlFor="disponibiliteSelect" className={styles.filterLabel}>Disponibilité:</label>
+              <select
+                id="disponibiliteSelect"
+                value={disponibilite}
+                onChange={(e) => setDisponibilite(e.target.value)}
+                className={styles.select}
+              >
+                <option value="">Tous</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Bientôt disponible">Bientôt Disponible</option>
+                <option value="Non disponible">Indisponible</option>
+                <option value="Non renseigné">Non renseigné</option>
+              </select>
+            </div>
+
+            <div className={styles.sliderContainer}>
+              <label>Loyer: {minPrice}€ - {maxPrice}€</label>
+              <RangeSlider
+                min={0}
+                max={1000}
+                step={10}
+                defaultValue={[minPrice, maxPrice]}
+                onInput={handleRangeChange}
+                className={styles.slider}
+              />
+            </div>
           </div>
-        </div>
-          {/* Affichage des tags des filtres actifs */}
+
+          <div className={styles.residencesCount}>
+            <p>{filteredResidences.length} Résidences trouvées</p>
+          </div>
+
           {renderActiveFilters()}
+        </div>
 
         <div className={styles.cardGrid}>
           {filteredResidences.length > 0 ? (
