@@ -1,3 +1,4 @@
+// pages/Residences.js
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -8,6 +9,10 @@ import ResidenceCard from '../components/ResidenceCard';
 import Modal from '../components/Modal';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Residences.module.css';
+import 'react-range-slider-input/dist/style.css';
+import RangeSlider from 'react-range-slider-input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faCalendarAlt, faDollarSign, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Residences = () => {
   const [residences, setResidences] = useState([]);
@@ -19,7 +24,8 @@ const Residences = () => {
   const [searchText, setSearchText] = useState('');
   const [departement, setDepartement] = useState('');
   const [disponibilite, setDisponibilite] = useState('');
-  const [prixMax, setPrixMax] = useState(1000);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
   const router = useRouter();
   const { disponibilite: queryDisponibilite, search: querySearchText, departement: queryDepartement } = router.query;
@@ -69,6 +75,12 @@ const Residences = () => {
     fetchResidences();
   }, [queryDisponibilite, querySearchText, queryDepartement]);
 
+  const handleRangeChange = (values) => {
+    const [min, max] = values;
+    setMinPrice(min);
+    setMaxPrice(max);
+  };
+
   const handleFilter = () => {
     let filtered = residences;
 
@@ -84,9 +96,9 @@ const Residences = () => {
       );
     }
 
-    if (prixMax) {
+    if (minPrice || maxPrice) {
       filtered = filtered.filter((residence) =>
-        parseFloat(residence.prix) <= prixMax
+        parseFloat(residence.prix) >= minPrice && parseFloat(residence.prix) <= maxPrice
       );
     }
 
@@ -105,7 +117,62 @@ const Residences = () => {
 
   useEffect(() => {
     handleFilter();
-  }, [searchText, departement, disponibilite, prixMax]);
+  }, [searchText, departement, disponibilite, minPrice, maxPrice]);
+
+  // Fonction pour supprimer un filtre individuel
+  const removeFilter = (type) => {
+    if (type === 'searchText') setSearchText('');
+    else if (type === 'departement') setDepartement('');
+    else if (type === 'disponibilite') setDisponibilite('');
+    else if (type === 'price') {
+      setMinPrice(0);
+      setMaxPrice(1000);
+    }
+  };
+
+  // Rendu des tags de filtres actifs
+  const renderActiveFilters = () => (
+    <div className="flex flex-wrap gap-2 mb-4">
+      {searchText && (
+        <FilterTag type="search" label={`${searchText}`} onRemove={() => removeFilter('searchText')} />
+      )}
+      {departement && (
+        <FilterTag type="location" label={`${departement}`} onRemove={() => removeFilter('departement')} />
+      )}
+      {disponibilite && (
+        <FilterTag type="availability" label={`${disponibilite}`} onRemove={() => removeFilter('disponibilite')} />
+      )}
+      {(minPrice > 0 || maxPrice < 1000) && (
+        <FilterTag type="price" label={`${minPrice}€ - ${maxPrice}€`} onRemove={() => removeFilter('price')} />
+      )}
+    </div>
+  );
+
+  // Composant pour un tag de filtre individuel avec icon customization
+  const FilterTag = ({ label, type, onRemove }) => {
+    const getIcon = () => {
+      switch (type) {
+        case 'location':
+          return faMapMarkerAlt;
+        case 'price':
+          return faDollarSign;
+        case 'availability':
+          return faCalendarAlt;
+        case 'search':
+          return faSearch;
+        default:
+          return faTag;
+      }
+    };
+
+    return (
+      <div className={styles.filterTag}>
+        <FontAwesomeIcon icon={getIcon()} className="icon" />
+        <span>{label}</span>
+        <button onClick={onRemove}>×</button>
+      </div>
+    );
+  };
 
   // Rendu du composant
   return (
@@ -113,6 +180,9 @@ const Residences = () => {
       <Navbar />
 
       <div className={styles.container}>
+      
+
+        {/* Options de filtres */}
         <div className={styles.filtersRow}>
           <input
             type="text"
@@ -151,25 +221,28 @@ const Residences = () => {
               className={styles.select}
             >
               <option value="">Tous</option>
-              <option value="disponible">Disponible</option>
+              <option value="Disponible">Disponible</option>
               <option value="Bientôt disponible">Bientôt Disponible</option>
-              <option value="non disponible">Indisponible</option>
-              <option value="non renseigné">Non renseigné</option>
+              <option value="Non disponible">Indisponible</option>
+              <option value="Non renseigné">Non renseigné</option>
             </select>
           </div>
 
           <div className={styles.sliderContainer}>
-            <label>Prix maximum: {prixMax}€</label>
-            <input
-              type="range"
-              min="0"
-              max="1000"
-              value={prixMax}
-              onChange={(e) => setPrixMax(e.target.value)}
-              className={styles.slider}
+            <label>Prix maximum: {minPrice}€ - {maxPrice}€</label>
+            <RangeSlider
+              min={0}
+              max={1000}
+              step={10}
+              defaultValue={[minPrice, maxPrice]}
+              onInput={handleRangeChange}
+              thumbsDisabled={[false, false]}
+              rangeSlideDisabled={false}
             />
           </div>
         </div>
+          {/* Affichage des tags des filtres actifs */}
+          {renderActiveFilters()}
 
         <div className={styles.cardGrid}>
           {filteredResidences.length > 0 ? (

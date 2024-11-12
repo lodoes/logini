@@ -19,9 +19,8 @@ const Navbar = () => {
             Accueil
           </Link>
         </li>
-        <li>
-          <Link href="/residences">Toutes les résidences</Link>
-        </li>
+        <li><Link href="/residences">Toutes les résidences</Link></li>
+        <li><Link href="/maps">Carte des Résidences</Link></li>
        
       </ul>
 

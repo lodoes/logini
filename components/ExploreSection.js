@@ -1,3 +1,4 @@
+// components/ExploreSection.js
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -5,16 +6,15 @@ import Slider from 'react-slick';
 import { supabase } from '../lib/supabaseClient';
 
 const categories = [
-  { icon: '💻', name: 'STUDEFI' },
-  { icon: '🎓', name: 'FAC HABITAT' },
-  { icon: '💰', name: 'ARPEJ' },
-  { icon: '🏠', name: 'Aref' },
-  { icon: '🏢', name: 'ALJT' },
-  { icon: '🏫', name: 'AGEFO' },
-  { icon: '🌱', name: 'Relais Jeune' },
-  { icon: '🌍', name: 'Kamino' },
-  { icon: '🏡', name: 'ALFI' },
-  { icon: '📈', name: 'Logifac' }
+  { logo: '/logos/studefi.png', name: 'STUDEFI' },
+  { logo: '/logos/fac-habitat.png', name: 'FAC HABITAT' },
+  { logo: '/logos/arpej.png', name: 'ARPEJ' },
+  { logo: '/logos/aref.png', name: 'Aref' },
+  { logo: '/logos/aljt.png', name: 'ALJT' },
+  { logo: '/logos/agefo.png', name: 'AGEFO' },
+  { logo: '/logos/relais-jeunes.png', name: 'Relais Jeune' },
+  { logo: '/logos/kamino.png', name: 'Kamino' },
+  { logo: '/logos/logifac.png', name: 'Logifac' }
 ];
 
 const ExploreSection = () => {
@@ -35,14 +35,12 @@ const ExploreSection = () => {
     fetchResidences();
   }, []);
 
-  // Fonction pour déclencher une recherche avec le département et le texte de recherche
   const handleSearch = () => {
     if (selectedDepartment || searchText) {
       window.location.href = `/residences?departement=${selectedDepartment}&search=${searchText}`;
     }
   };
 
-  // Fonction pour rechercher par catégorie lorsque l'utilisateur clique sur une catégorie
   const handleCategorySearch = (categoryName) => {
     window.location.href = `/residences?search=${categoryName}`;
   };
@@ -85,7 +83,7 @@ const ExploreSection = () => {
             placeholder="Cherchez par nom, lieu, type"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="w-full p-3 pl-10 border rounded-lg outline-none focus:border-indigo-600"
+            className="w-full p-3 pl-10 border rounded-lg outline-none focus:border-indigo-600 text-black"
           />
           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
             🔍
@@ -97,14 +95,14 @@ const ExploreSection = () => {
           onChange={(e) => setSelectedDepartment(e.target.value)}
         >
           <option value="">Département</option>
-          <option value="93">Seine-Saint-Denis (93)</option>
-          <option value="94">Val-de-Marne (94)</option>
-          <option value="77">Seine-et-Marne (77)</option>
-          <option value="95">Val-d&apos;Oise (95)</option>
-          <option value="78">Yvelines (78)</option>
-          <option value="92">Hauts-de-Seine (92)</option>
-          <option value="75">Paris (75)</option>
-          <option value="91">Essonne (91)</option>
+          <option value="Seine-Saint-Denis (93)">Seine-Saint-Denis (93)</option>
+          <option value="Val-de-Marne (94)">Val-de-Marne (94)</option>
+          <option value="Seine-et-Marne (77)">Seine-et-Marne (77)</option>
+          <option value="Val-d&apos;Oise (95)">Val-d&apos;Oise (95)</option>
+          <option value="Yvelines (78)">Yvelines (78)</option>
+          <option value="Hauts-de-Seine (92)">Hauts-de-Seine (92)</option>
+          <option value="Paris (75)">Paris (75)</option>
+          <option value="Essonne (91)">Essonne (91)</option>
         </select>
         <button
           onClick={handleSearch}
@@ -115,25 +113,33 @@ const ExploreSection = () => {
       </div>
 
       {/* Carrousel de catégories */}
-      <Slider {...settings} className="py-1 max-w-full mx-auto overflow-hidden mx-10">
-        {categories.map((category, index) => {
-          const count = residences.filter(
-            (residence) => residence.type === category.name
-          ).length;
+      <div className="flex justify-center w-full">
+        <Slider {...settings} className="w-[90%] max-w-[1200px]">
+          {categories.map((category, index) => {
+            const count = residences.filter(
+              (residence) => residence.type === category.name
+            ).length;
 
-          return (
-            <div
-              key={index}
-              onClick={() => handleCategorySearch(category.name)} // Redirige avec le nom de la catégorie comme recherche
-              className="flex flex-col items-center p-6 w-40 transition-transform transform hover:scale-20 text-center cursor-pointer"
-            >
-              <div className="text-3xl mb-4">{category.icon}</div>
-              <h3 className="font-semibold text-black">{category.name}</h3>
-              <p className="text-gray-600">{count} propriétés</p>
-            </div>
-          );
-        })}
-      </Slider>
+            return (
+              <div
+                key={index}
+                onClick={() => handleCategorySearch(category.name)}
+                className="flex flex-col items-center justify-center p-6 transition-transform transform hover:scale-105 text-center cursor-pointer"
+              >
+                <div className="flex items-center justify-center h-24  mb-4">
+                  <img
+                    src={category.logo}
+                    alt={`${category.name} logo`}
+                    className="h-full w-full object-contain"
+                  />
+                </div>
+                <h3 className="font-semibold text-black text-center mt-2">{category.name}</h3>
+                <p className="text-gray-600 text-center mt-1">{count} résidences</p>
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
     </section>
   );
 };
