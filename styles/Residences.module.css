@@ -270,3 +270,20 @@
   font-weight: 500;
   text-align: left;
 }
+
+/* Mobile-specific styling */
+@media (max-width: 768px) {
+  .filtersRow {
+    display: flex;
+    flex-direction: column; /* Ensures each filter is on a separate line */
+    align-items: flex-start; /* Aligns filters to the left */
+  }
+  
+  .filterGroup,
+  .sliderContainer,
+  .searchInput {
+    width: 100%; /* Full width on mobile for a single row layout */
+    margin-bottom: 10px; /* Space between each filter element */
+  }
+}
+

@@ -19,10 +19,9 @@ const HeroSection = () => {
           <p className="text-gray-700 mt-6 md:mt-8 text-base md:text-lg">
             Découvrez une large gamme de résidences dans des emplacements privilégiés. Trouvez l&apos;endroit parfait pour vous sentir chez vous.
           </p>
-          <Link href="/residences">
-            <a className="mt-8 md:mt-10 inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200" aria-label="Trouver votre résidence">
+          <Link href="/residences" className="mt-8 md:mt-10 inline-block bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200" aria-label="Trouver votre résidence">
               Trouvez votre résidence
-            </a>
+            
           </Link>
         </div>
 
