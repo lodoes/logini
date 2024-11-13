@@ -14,7 +14,7 @@ const HeroSection = () => {
       <div className="relative z-10 flex flex-col md:flex-row items-center md:gap-x-40 space-y-10 md:space-y-0">
         <div className="max-w-md text-center md:text-left">
           <h1 className="text-3xl md:text-5xl font-extrabold text-indigo-700 leading-tight">
-            Résidences étudiantes pour vous
+            245 Résidences étudiantes pour vous
           </h1>
           <p className="text-gray-700 mt-6 md:mt-8 text-base md:text-lg">
             Découvrez une large gamme de résidences dans des emplacements privilégiés. Trouvez l&apos;endroit parfait pour vous sentir chez vous.
