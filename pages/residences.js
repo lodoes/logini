@@ -174,6 +174,11 @@ const Residences = () => {
       <div className={styles.container}>
         <div className={styles.filtersContainer}>
           <div className={styles.filtersRow}>
+          <div className={styles.filterGroup}>
+
+          <label htmlFor="searchInput" className={styles.filterLabel}>
+          Recherche:
+        </label>
             <input
               type="text"
               placeholder="Rechercher par nom, département, ville..."
@@ -181,6 +186,7 @@ const Residences = () => {
               onChange={(e) => setSearchText(e.target.value)}
               className={styles.searchInput}
             />
+            </div>
 
             <div className={styles.filterGroup}>
               <label htmlFor="departementSelect" className={styles.filterLabel}>Département:</label>
@@ -219,7 +225,9 @@ const Residences = () => {
             </div>
 
             <div className={styles.sliderContainer}>
-              <label>Loyer: {minPrice}€ - {maxPrice}€</label>
+            <label className={styles.sliderLabel}>Loyer: {minPrice}€ - {maxPrice}€</label>
+            <div className={styles.rangeSliderWrapper}></div>
+            
               <RangeSlider
                 min={0}
                 max={1000}
