@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import ResidenceCard from './ResidenceCard';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 
 const LatestResidences = () => {
