@@ -25,3 +25,15 @@ body {
   background: var(--background);
   font-family: 'Montserrat', Helvetica, sans-serif;
 }
+
+/* For global CSS */
+.range-slider .range-slider__track {
+  background-color: #7A3DAF; /* Replace with your desired color */
+  height: 6px; /* Customize track height */
+}
+
+.range-slider .range-slider__thumb {
+  background-color: #7A3DAF; /* Customize thumb color */
+  width: 20px; /* Customize thumb size */
+  height: 20px;
+}

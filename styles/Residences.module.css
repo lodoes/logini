@@ -145,7 +145,6 @@
 
 /* Modern Price Slider */
 .slider {
-  -webkit-appearance: none;
   width: 150px;
   height: 8px;
   border-radius: 5px;

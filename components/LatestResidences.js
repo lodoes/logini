@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import ResidenceCard from './ResidenceCard';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 
 const LatestResidences = () => {
@@ -46,6 +47,7 @@ const LatestResidences = () => {
       <h2 className="text-3xl font-semibold text-center text-indigo-700">Résidences Disponibles</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {diverseResidences.length > 0 ? (
+          
           diverseResidences.map((residence) => (
             <ResidenceCard key={residence.id} residence={residence} />
           ))
@@ -59,6 +61,10 @@ const LatestResidences = () => {
       >
         Voir plus
       </button>
+
+
+
+
     </section>
   );
 };

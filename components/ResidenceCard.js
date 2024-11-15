@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '../styles/ResidenceCard.module.css';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
 
 const ResidenceCard = ({ residence }) => {
   // Function to determine the status color class
@@ -35,7 +37,7 @@ const ResidenceCard = ({ residence }) => {
       <h3 className={styles.cardTitle}>{residence.nom}</h3>
       <div className={styles.cardHeader}>
         <span className={styles.location}>
-          <i className="fa fa-map-marker-alt"></i> {residence.ville}, {residence.departement}
+        <FaMapMarkerAlt style={{ marginRight: '1px' }} /> {residence.ville}, {residence.departement}
         </span>
         <span className={styles.type}>
            {residence.type}

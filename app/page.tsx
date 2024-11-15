@@ -11,8 +11,9 @@ const HomePage = () => {
     <>
       <Navbar />
       <HeroSection />
-      <LatestResidences />
       <ExploreSection />
+      <LatestResidences />
+
 
     </>
   );
