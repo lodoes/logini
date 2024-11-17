@@ -1,15 +1,11 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faMapMarkerAlt, faEnvelope, faPhone, faInfoCircle, faEuroSign, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faMapMarkerAlt, faEnvelope, faPhone, faBuilding } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/Modal.module.css';
 
 // Dynamically import MapContainer with no SSR
-const MapContainer = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), {
-  ssr: false,
-});
-const TileLayer = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
+
 
 const Modal = ({ show, handleClose, residence }) => {
   if (!show) {
