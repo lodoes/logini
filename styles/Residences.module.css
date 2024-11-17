@@ -54,7 +54,7 @@
 }
 
 .searchInput:focus {
-  border-color: rgb(67 56 202);
+  border-color: #51adf6;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
   outline: none;
 }
@@ -69,7 +69,7 @@
 }
 
 .select:focus {
-  border-color: rgb(67 56 202);
+  border-color: #51adf6;
   outline: none;
 }
 
@@ -105,7 +105,7 @@
   width: 100%;
   height: 8px;
   border-radius: 5px;
-  background: linear-gradient(90deg, #ddd 0%, #4f46e5 50%, #ddd 100%);
+  background: linear-gradient(90deg, #ddd 0%, #51adf6 50%, #ddd 100%);
   outline: none;
   transition: background 0.3s;
 }
@@ -114,7 +114,7 @@
   content: "";
   position: absolute;
   height: 8px;
-  background-color: rgb(67 56 202);
+  background-color: #51adf6;
   border-radius: 4px;
   z-index: 1;
   transition: width 0.3s;
@@ -127,7 +127,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgb(67 56 202);
+  background: #51adf6;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
@@ -141,7 +141,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgb(67 56 202);
+  background: #51adf6;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
@@ -165,7 +165,7 @@
   padding: 8px 12px;
   border: 1px solid #e0e0e0;
   background-color: white;
-  color: rgb(67 56 202);
+  color:#51adf6;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
@@ -182,9 +182,9 @@
 }
 
 .activePage {
-  background-color: rgb(67 56 202);
+  background-color: #51adf6;
   color: white;
-  border: 1px solid rgb(67 56 202);
+  border: 1px solid #51adf6;
 }
 
 /* Responsive Pagination for smaller screens */
@@ -241,7 +241,7 @@
 .filterTag {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(68, 56, 202, 0.868);
+  background-color:#51adf6;
   color: #ffffff;
   padding: 6px 12px;
   border-radius: 9999px;
@@ -260,13 +260,13 @@
 .filterTag .icon {
   font-size: 1rem;
   margin-right: 4px;
-  color: #9ca3af;
+  color: #ffffff;
 }
 
 .filterTag button {
   background: none;
   border: none;
-  color: #9ca3af;
+  color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
   transition: color 0.2s ease;

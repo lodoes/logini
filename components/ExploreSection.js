@@ -72,7 +72,7 @@ const ExploreSection = () => {
   return (
     <section className="text-center py-16 bg-white">
       <h2 className="text-3xl font-semibold mb-8 text-black">
-        Découvrez plus de <span className="text-indigo-600">résidences</span>
+        Découvrez plus de <span className="text-blue">résidences</span>
       </h2>
 
       {/* Search Bar */}
@@ -83,14 +83,14 @@ const ExploreSection = () => {
             placeholder="Cherchez par nom, lieu, type"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="w-full p-3 pl-10 border rounded-lg outline-none focus:border-indigo-600 text-black"
+            className="w-full p-3 pl-10 border rounded-lg outline-none focus:border-blue text-black"
           />
           <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
             🔍
           </span>
         </div>
         <select
-          className="p-3 border text-black rounded-lg outline-none focus:border-indigo-600 w-72 md:w-auto"
+          className="p-3 border text-black rounded-lg outline-none focus:border-blue w-72 md:w-auto"
           value={selectedDepartment}
           onChange={(e) => setSelectedDepartment(e.target.value)}
         >
@@ -106,7 +106,7 @@ const ExploreSection = () => {
         </select>
         <button
           onClick={handleSearch}
-          className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 w-48 md:w-auto"
+          className="bg-blue text-white px-6 py-3 rounded-lg hover:bg-blue w-48 md:w-auto"
         >
           Rechercher
         </button>

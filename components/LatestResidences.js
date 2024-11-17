@@ -43,7 +43,7 @@ const LatestResidences = () => {
 
   return (
     <section className="p-10 bg-gray-50">
-      <h2 className="text-3xl font-semibold text-center text-indigo-700">Résidences Disponibles</h2>
+      <h2 className="text-3xl font-semibold text-center text-blue">Résidences Disponibles</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {diverseResidences.length > 0 ? (
           
@@ -56,7 +56,7 @@ const LatestResidences = () => {
       </div>
       <button
         onClick={handleSeeMore}
-        className="block mx-auto mt-6 bg-indigo-600 text-white py-2 px-4 rounded-lg shadow hover:bg-indigo-700 transition-colors duration-200"
+        className="block mx-auto mt-6 bg-blue text-white py-2 px-4 rounded-lg shadow hover:bg-blue transition-colors duration-200"
       >
         Voir plus
       </button>
