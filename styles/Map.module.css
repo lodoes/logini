@@ -1,0 +1,209 @@
+/* Conteneur principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden; /* Empêche tout dépassement */
+}
+
+/* Barre latérale (filtres) */
+.sidebar {
+    max-height: 40%; /* La barre occupe 40% de la hauteur de l'écran sur mobile */
+  padding: 20px;
+  background: #f8f9fa;
+  overflow-y: auto; /* Permet le défilement si les filtres débordent */
+  transition: transform 0.3s ease, max-height 0.3s ease;
+  z-index: 10; /* Assure que la barre passe au-dessus de la carte */
+}
+
+.sidebarVisible {
+  transform: translateY(0); /* Visible en hauteur */
+}
+
+.sidebarHidden {
+  transform: translateY(-100%); /* Masque complètement la barre latérale */
+  max-height: 0; /* Réduit la hauteur à 0 */
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Carte */
+.map {
+  flex: 1;
+  transition: all 0.3s ease; /* Transition fluide lorsque la barre est masquée */
+}
+
+/* Bouton pour basculer les filtres */
+.toggleFiltersButton {
+  background-color: #51ADF6;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background 0.3s;
+  z-index: 20; /* Toujours visible au-dessus de la carte */
+  position: relative;
+}
+
+.toggleFiltersButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row; /* Sur desktop, les filtres sont à gauche */
+  }
+
+  .toggleFiltersButton {align-items: center;}
+
+  .sidebar {
+    max-width: 300px;
+    max-height: 100%; /* La barre occupe toute la hauteur */
+    transform: none; /* Toujours visible */
+  }
+
+  .sidebarHidden {
+    transform: none;
+    width: 0;
+    max-height: 100%;
+  }
+}
+
+/* Rangée de filtres */
+.filterRow {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Slider moderne */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.slider:hover {
+  background: #dee2e6;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #0056b3;
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007bff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  background: #0056b3;
+}
+
+/* Affichage de la valeur du slider */
+.sliderValue {
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Dropdown */
+.select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+.select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Toggle moderne */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggleSlider {
+  width: 40px;
+  height: 20px;
+  background: #ddd;
+  border-radius: 20px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.toggleContainer input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleContainer input:checked + .toggleSlider {
+  background: #007bff;
+}
+
+.toggleSlider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggleContainer input:checked + .toggleSlider::before {
+  transform: translateX(20px);
+}
+
+/* Bouton rechercher */
+.searchButton {
+  width: 100%;
+  background: #51ADF6;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.searchButton:hover {
+  background: #0056b3;
+}

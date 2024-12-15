@@ -1,0 +1,99 @@
+/* Carte principale */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* Statut en haut à gauche */
+.statusBadge {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: #9e9e9e; /* Par défaut */
+  text-transform: capitalize;
+  width: fit-content;
+}
+
+.available {
+  background-color: #4caf50;
+}
+
+.soon {
+  background-color: #ff9800;
+}
+
+.unavailable {
+  background-color: #f44336;
+}
+
+.notProvided {
+  background-color: #9e9e9e;
+}
+
+/* Détails de la résidence */
+.details {
+  margin: 12px 0;
+}
+
+.cardTitle {
+  margin: 4px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+.location svg {
+  margin-right: 4px;
+}
+
+/* Séparateur */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px 0;
+  opacity: 0.5;
+}
+
+/* Pied de carte : prix et lien */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardPrice {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #51adf6;
+}
+
+.viewLink {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #51adf6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.viewLink:hover {
+  color: #007bff;
+  text-decoration: underline;
+}

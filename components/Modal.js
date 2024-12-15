@@ -1,15 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faMapMarkerAlt, faEnvelope, faPhone, faBuilding } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faMapMarkerAlt, faEnvelope, faPhone, faBuilding,faMap,faEuroSign,faCheck} from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles/Modal.module.css';
 
-// Dynamically import MapContainer with no SSR
-
-
 const Modal = ({ show, handleClose, residence }) => {
-  if (!show) {
-    return null; // Do not render the modal if it's not visible
-  }
+  if (!show) return null;
 
   return (
     <div className={styles.modalOverlay}>
@@ -24,20 +19,19 @@ const Modal = ({ show, handleClose, residence }) => {
 
         {/* Modal Body */}
         <div className={styles.modalBody}>
-          {/* Left Side: Details */}
           <div className={styles.detailsSection}>
-            <p><FontAwesomeIcon icon={faBuilding} className={styles.icon} /> <span>{residence.type}</span></p>
-            <p><FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} /> <span>{residence.adresse_complete}</span></p>
-            <p><span>Ville:</span> {residence.ville}, {residence.departement}</p>
-            <p><span>Prix:</span> {residence.prix}€</p>
-            <p><span>Disponibilité:</span> {residence.disponibilite}</p>
-            <p><FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> <span>{residence.email}</span></p>
-            <p><FontAwesomeIcon icon={faPhone} className={styles.icon} /> <span>{residence.telephone}</span></p>
+            <p><FontAwesomeIcon icon={faBuilding} className={styles.icon} /> {residence.type}</p>
+            <p><FontAwesomeIcon icon={faMapMarkerAlt} className={styles.icon} /> {residence.adresse_complete}</p>
+            <p><FontAwesomeIcon icon={faMap} className={styles.icon} /> Département:  {residence.departement}</p>
+            <p><FontAwesomeIcon icon={faEuroSign} className={styles.icon} /> Prix: {residence.prix}€</p>
+            <p><FontAwesomeIcon icon={faCheck} className={styles.icon} /> Disponibilité: {residence.disponibilite}</p>
+            <p><FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> {residence.email}</p>
+            <p><FontAwesomeIcon icon={faPhone} className={styles.icon} /> {residence.telephone}</p>
           </div>
-
-          {/* Right Side: Map */}
-          
         </div>
+
+        {/* Link to view residence */}
+        <a href={`${residence.lien}`} className={styles.viewLink}>Voir la résidence</a>
       </div>
     </div>
   );

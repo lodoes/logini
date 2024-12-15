@@ -29,12 +29,12 @@ const HeroSection = () => {
           <div className="bg-white p-6 rounded-lg shadow-xl w-60 md:w-80 transform hover:scale-105 transition-transform duration-200">
             <h3 className="text-lg font-semibold text-blue">Résidence pour étudiants</h3>
             <p className="text-gray-500 mt-4 text-base">Idéal pour les étudiants, stagiaires et apprentis</p>
-            <p className="text-gray-400 font-bold mt-6 text-base">250€ - 700€/mois</p>
+            <p className="text-gray-800 font-bold mt-6 text-base">250€ - 700€/mois</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-xl w-60 md:w-80 transform hover:scale-105 transition-transform duration-200">
             <h3 className="text-lg font-semibold text-blue">Résidence pour jeunes actifs</h3>
             <p className="text-gray-500 mt-4 text-base">Idéal pour les premières années dans le monde professionnel</p>
-            <p className="text-gray-400 font-bold mt-6 text-base">800€ - 1000€/mois</p>
+            <p className="text-gray-800 font-bold mt-6 text-base">500€ - 1000€/mois</p>
           </div>
         </div>
       </div>

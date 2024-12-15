@@ -4,6 +4,10 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
+import Head from 'next/head'
+
+
+
 
 
 const LeafletMap = dynamic(() => import('../components/LeafletMap'), { ssr: false });
@@ -35,6 +39,9 @@ const ResidencesMapPage = () => {
     <>
     <Navbar />
     <div style={{ height: "100vh", width: "100%" }}>
+      <Head>
+        <title>Logini - Carte des residences</title>
+      </Head>
       {residences.length > 0 ? (
         <LeafletMap residences={residences} />
       ) : (

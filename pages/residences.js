@@ -13,6 +13,8 @@ import 'react-range-slider-input/dist/style.css';
 import RangeSlider from 'react-range-slider-input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faCalendarAlt, faDollarSign, faSearch } from '@fortawesome/free-solid-svg-icons';
+import Head from 'next/head'
+
 
 const Residences = () => {
   const [residences, setResidences] = useState([]);
@@ -172,6 +174,9 @@ const Residences = () => {
       <Navbar />
 
       <div className={styles.container}>
+      <Head>
+        <title>Logini - Liste des residences</title>
+      </Head>
         <div className={styles.filtersContainer}>
           <div className={styles.filtersRow}>
           <div className={styles.filterGroup}>

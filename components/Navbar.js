@@ -26,7 +26,7 @@ const Navbar = () => {
 
       {/* Right Side: Icons */}
       <div className={styles.icons}>
-        <p>👤</p>
+        <p></p>
       </div>
     </nav>
   );
